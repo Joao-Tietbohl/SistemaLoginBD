@@ -70,7 +70,7 @@ namespace SistemaLoginBD.Infra
         {
             string sqlLogin = @"
                     SELECT Id, Login, Senha, Email FROM [dbo].[Usuario]
-                        WHERE LOGIN = @LOGIN
+                        WHERE LOGIN = @LOGIN AND SENHA = @SENHA
                                                 ";
 
             SqlConnection conexaoComBanco = new SqlConnection(connectionString);
@@ -78,6 +78,7 @@ namespace SistemaLoginBD.Infra
             SqlCommand comandoLogin = new SqlCommand(sqlLogin, conexaoComBanco);
 
             comandoLogin.Parameters.AddWithValue("Login", login);
+            comandoLogin.Parameters.AddWithValue("Senha", senha);
 
             Usuario usuario = null;
 

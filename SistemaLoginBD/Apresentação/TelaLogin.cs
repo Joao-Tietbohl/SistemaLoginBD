@@ -38,10 +38,25 @@ namespace SistemaLoginBD
             string login = tbLogin.Text;
             string senha = tbSenha.Text;
 
+            if (string.IsNullOrEmpty(login))
+            {
+                MessageBox.Show("Digite seu login");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(senha))
+            {
+                MessageBox.Show("Digite sua senha");
+                return;
+            }
+
             usuarioLogado = repositorioUsuario.Login(login, senha);
 
             if (usuarioLogado == null)
+            {
                 MessageBox.Show("Usuário não cadastrado!");
+                return;
+            }
 
             var telaInicial = new TelaInicial(usuarioLogado);
             this.Hide();

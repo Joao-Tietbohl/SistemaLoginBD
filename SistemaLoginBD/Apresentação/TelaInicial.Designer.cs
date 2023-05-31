@@ -35,7 +35,7 @@
             // lbBemVindo
             // 
             this.lbBemVindo.AutoSize = true;
-            this.lbBemVindo.Location = new System.Drawing.Point(56, 46);
+            this.lbBemVindo.Location = new System.Drawing.Point(23, 55);
             this.lbBemVindo.Name = "lbBemVindo";
             this.lbBemVindo.Size = new System.Drawing.Size(58, 13);
             this.lbBemVindo.TabIndex = 0;
