@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace SistemaLoginBD.Infra
 {
-    public class RepositorioUsuario
+    public class RepositorioUsuario : RepositorioBase
     {
-        static string connectionString = @"Data Source=localhost;Initial Catalog=SistemaLogin;Integrated Security=True;Pooling=False";
-
-
         public RepositorioUsuario()
         {
         }

@@ -46,35 +46,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apresentação\Funcionarios\CadastroFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Funcionarios\CadastroFuncionario.Designer.cs">
+      <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\Funcionarios\ListagemFuncionario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Funcionarios\ListagemFuncionario.Designer.cs">
+      <DependentUpon>ListagemFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\IListagem.cs" />
     <Compile Include="Apresentação\TelaInicial.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apresentação\TelaInicial.Designer.cs">
       <DependentUpon>TelaInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Departamento.cs" />
+    <Compile Include="Dominio\EntidadeBase.cs" />
+    <Compile Include="Dominio\Funcionario.cs" />
     <Compile Include="Dominio\Usuario.cs" />
-    <Compile Include="Apresentação\TelaCadastro.cs">
+    <Compile Include="Apresentação\Login\TelaCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apresentação\TelaCadastro.Designer.cs">
+    <Compile Include="Apresentação\Login\TelaCadastro.Designer.cs">
       <DependentUpon>TelaCadastro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Apresentação\TelaLogin.cs">
+    <Compile Include="Apresentação\Login\TelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apresentação\TelaLogin.Designer.cs">
+    <Compile Include="Apresentação\Login\TelaLogin.Designer.cs">
       <DependentUpon>TelaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Infra\RepositorioBase.cs" />
+    <Compile Include="Infra\RepositorioFuncionario.cs" />
     <Compile Include="Infra\RepositorioUsuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Apresentação\TelaCadastro.resx">
+    <EmbeddedResource Include="Apresentação\Funcionarios\CadastroFuncionario.resx">
+      <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Funcionarios\ListagemFuncionario.resx">
+      <DependentUpon>ListagemFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Login\TelaCadastro.resx">
       <DependentUpon>TelaCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\TelaInicial.resx">
       <DependentUpon>TelaInicial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apresentação\TelaLogin.resx">
+    <EmbeddedResource Include="Apresentação\Login\TelaLogin.resx">
       <DependentUpon>TelaLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
