@@ -59,15 +59,27 @@
       <DependentUpon>ListagemFuncionario.cs</DependentUpon>
     </Compile>
     <Compile Include="Apresentação\IListagem.cs" />
+    <Compile Include="Apresentação\Produtos\CadastroProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Produtos\CadastroProduto.Designer.cs">
+      <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\Produtos\ListagemProduto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Produtos\ListagemProduto.Designer.cs">
+      <DependentUpon>ListagemProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentação\TelaInicial.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apresentação\TelaInicial.Designer.cs">
       <DependentUpon>TelaInicial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dominio\Departamento.cs" />
     <Compile Include="Dominio\EntidadeBase.cs" />
     <Compile Include="Dominio\Funcionario.cs" />
+    <Compile Include="Dominio\Produto.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="Apresentação\Login\TelaCadastro.cs">
       <SubType>Form</SubType>
@@ -83,6 +95,7 @@
     </Compile>
     <Compile Include="Infra\RepositorioBase.cs" />
     <Compile Include="Infra\RepositorioFuncionario.cs" />
+    <Compile Include="Infra\RepositorioProduto.cs" />
     <Compile Include="Infra\RepositorioUsuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +107,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Login\TelaCadastro.resx">
       <DependentUpon>TelaCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Produtos\CadastroProduto.resx">
+      <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Produtos\ListagemProduto.resx">
+      <DependentUpon>ListagemProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\TelaInicial.resx">
       <DependentUpon>TelaInicial.cs</DependentUpon>

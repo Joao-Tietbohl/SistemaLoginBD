@@ -1,4 +1,5 @@
 ﻿using SistemaLoginBD.Apresentação.Funcionarios;
+using SistemaLoginBD.Apresentação.Produtos;
 using SistemaLoginBD.Infra;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,13 @@ namespace SistemaLoginBD.Apresentação
         IListagem listagemAtual;
 
         RepositorioFuncionario repositorioFuncionario = new RepositorioFuncionario();
+        RepositorioProduto repositorioProduto = new RepositorioProduto();
 
         public TelaInicial(Usuario usuario)
         {
             InitializeComponent();
             usuarioLogado = usuario;
-            lbBemVindo.Text = $"Seja Bem Vindo(a) {usuarioLogado.Login}";
+            lbBemVindo.Text = $"{usuarioLogado.Login}";
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -50,16 +52,28 @@ namespace SistemaLoginBD.Apresentação
             switch (listagem.Name)
             {
                 case "ListagemFuncionario":
-                    CadastroFuncionario telaCadastro = new CadastroFuncionario();
+                    CadastroFuncionario telaCadastroFuncionario = new CadastroFuncionario();
 
-                    DialogResult resultado = telaCadastro.ShowDialog();
+                    DialogResult resultadoFuncionario = telaCadastroFuncionario.ShowDialog();
 
-                    if (resultado != DialogResult.OK)
+                    if (resultadoFuncionario != DialogResult.OK)
                         return;
 
-                    repositorioFuncionario.Inserir(telaCadastro.funcionario);
+                    repositorioFuncionario.Inserir(telaCadastroFuncionario.funcionario);
                     listagemAtual.AtualizarGrid();
-                    break; 
+                    break;
+
+                case "ListagemProduto":
+                    CadastroProduto telaCadastroProduto = new CadastroProduto();
+
+                    DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
+
+                    if (resultadoProduto != DialogResult.OK)
+                        return;
+
+                    repositorioProduto.Inserir(telaCadastroProduto.produto);
+                    listagemAtual.AtualizarGrid();
+                    break;
             }
         }
 
@@ -71,15 +85,15 @@ namespace SistemaLoginBD.Apresentação
             {
                 case "ListagemFuncionario":
 
-                    int id = listagemAtual.SelecionarEntidadePorIdGrid();
+                    int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    if (id == -1)
+                    if (idFuncionario == -1)
                     {
                         MessageBox.Show("Selecione um funcionário.");
                         return;
                     }
 
-                    var funcionario = repositorioFuncionario.SelecionarPorId(id);
+                    var funcionario = repositorioFuncionario.SelecionarPorId(idFuncionario);
 
                     CadastroFuncionario telaCadastro = new CadastroFuncionario(funcionario);
 
@@ -90,6 +104,30 @@ namespace SistemaLoginBD.Apresentação
 
                     telaCadastro.funcionario.Id = funcionario.Id;
                     repositorioFuncionario.Editar(telaCadastro.funcionario);
+                    listagemAtual.AtualizarGrid();
+                    break;
+
+                case "ListagemProduto":
+
+                    int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
+
+                    if (idProduto == -1)
+                    {
+                        MessageBox.Show("Selecione um produto.");
+                        return;
+                    }
+
+                    var produto = repositorioProduto.SelecionarPorId(idProduto);
+
+                    CadastroProduto telaCadastroProduto = new CadastroProduto(produto);
+
+                    DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
+
+                    if (resultadoProduto != DialogResult.OK)
+                        return;
+
+                    telaCadastroProduto.produto.Id = produto.Id;
+                    repositorioProduto.Editar(telaCadastroProduto.produto);
                     listagemAtual.AtualizarGrid();
                     break;
             }
@@ -103,19 +141,43 @@ namespace SistemaLoginBD.Apresentação
             {
                 case "ListagemFuncionario":
 
-                    int id = listagemAtual.SelecionarEntidadePorIdGrid();
+                    int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    if (id == -1)
+                    if (idFuncionario == -1)
                     {
                         MessageBox.Show("Selecione um funcionário.");
                         return;
                     }
 
-                    repositorioFuncionario.Excluir(id);
+                    repositorioFuncionario.Excluir(idFuncionario);
+
+                    listagemAtual.AtualizarGrid();
+                    break;
+
+                case "ListagemProduto":
+
+                    int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
+
+                    if (idProduto == -1)
+                    {
+                        MessageBox.Show("Selecione um produto.");
+                        return;
+                    }
+
+                    repositorioProduto.Excluir(idProduto);
 
                     listagemAtual.AtualizarGrid();
                     break;
             }
+        }
+
+        private void btnControleProdutos_Click(object sender, EventArgs e)
+        {
+            ListagemProduto listagemProduto = new ListagemProduto(repositorioProduto);
+            pListagem.Controls.Clear();
+            listagemProduto.Dock = DockStyle.Fill;
+            pListagem.Controls.Add(listagemProduto);
+            listagemAtual = listagemProduto;
         }
     }
 }

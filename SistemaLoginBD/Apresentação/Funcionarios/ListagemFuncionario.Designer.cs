@@ -40,6 +40,7 @@
             this.gridFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridFuncionarios.Location = new System.Drawing.Point(0, 0);
             this.gridFuncionarios.Name = "gridFuncionarios";
+            this.gridFuncionarios.ReadOnly = true;
             this.gridFuncionarios.RowHeadersWidth = 51;
             this.gridFuncionarios.RowTemplate.Height = 24;
             this.gridFuncionarios.Size = new System.Drawing.Size(821, 478);
