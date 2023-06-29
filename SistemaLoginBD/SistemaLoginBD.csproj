@@ -77,6 +77,18 @@
     <Compile Include="Apresentação\TelaInicial.Designer.cs">
       <DependentUpon>TelaInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Apresentação\Vendas\CadastroVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Vendas\CadastroVenda.Designer.cs">
+      <DependentUpon>CadastroVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apresentação\Vendas\ListagemVenda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apresentação\Vendas\ListagemVenda.Designer.cs">
+      <DependentUpon>ListagemVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dominio\EntidadeBase.cs" />
     <Compile Include="Dominio\Funcionario.cs" />
     <Compile Include="Dominio\Produto.cs" />
@@ -93,10 +105,12 @@
     <Compile Include="Apresentação\Login\TelaLogin.Designer.cs">
       <DependentUpon>TelaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Venda.cs" />
     <Compile Include="Infra\RepositorioBase.cs" />
     <Compile Include="Infra\RepositorioFuncionario.cs" />
     <Compile Include="Infra\RepositorioProduto.cs" />
     <Compile Include="Infra\RepositorioUsuario.cs" />
+    <Compile Include="Infra\RepositorioVenda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Apresentação\Funcionarios\CadastroFuncionario.resx">
@@ -119,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentação\Login\TelaLogin.resx">
       <DependentUpon>TelaLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Vendas\CadastroVenda.resx">
+      <DependentUpon>CadastroVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentação\Vendas\ListagemVenda.resx">
+      <DependentUpon>ListagemVenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

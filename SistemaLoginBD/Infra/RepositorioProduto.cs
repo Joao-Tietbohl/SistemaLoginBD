@@ -145,6 +145,47 @@ namespace SistemaLoginBD.Infra
                 return produto;
             }
         }
+
+        public void DiminuiQuantidadeProduto(int id, int quantidadeNaVenda)
+        {
+            string sqlAtualizar =
+                @"UPDATE Produto
+                    SET Quantidade = Quantidade - @QuantidadeNaVenda
+                    WHERE Id = @Id";
+
+            using (SqlConnection conexaoComBanco = new SqlConnection(connectionString))
+            {
+                SqlCommand comandoAtualizar = new SqlCommand(sqlAtualizar, conexaoComBanco);
+
+                comandoAtualizar.Parameters.AddWithValue("@QuantidadeNaVenda", quantidadeNaVenda);
+                comandoAtualizar.Parameters.AddWithValue("@Id", id);
+
+                conexaoComBanco.Open();
+
+                comandoAtualizar.ExecuteNonQuery();
+            }
+        }
+
+        public int DescobrirIdPeloNome(string nome)
+        {
+            string sqlSelect =
+                @"Select Id
+                    from Produto
+                    WHERE Nome = @Nome";
+
+            using (SqlConnection conexaoComBanco = new SqlConnection(connectionString))
+            {
+                SqlCommand comandoAtualizar = new SqlCommand(sqlSelect, conexaoComBanco);
+
+                comandoAtualizar.Parameters.AddWithValue("@Nome", nome);
+
+                conexaoComBanco.Open();
+
+                int id = (int)comandoAtualizar.ExecuteScalar();
+
+                return id;
+            }
+        }
     }
 
 }

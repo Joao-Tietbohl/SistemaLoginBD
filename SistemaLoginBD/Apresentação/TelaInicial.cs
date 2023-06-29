@@ -1,5 +1,6 @@
 ﻿using SistemaLoginBD.Apresentação.Funcionarios;
 using SistemaLoginBD.Apresentação.Produtos;
+using SistemaLoginBD.Apresentação.Vendas;
 using SistemaLoginBD.Infra;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace SistemaLoginBD.Apresentação
 
         RepositorioFuncionario repositorioFuncionario = new RepositorioFuncionario();
         RepositorioProduto repositorioProduto = new RepositorioProduto();
+        RepositorioVenda repositorioVenda = new RepositorioVenda();
 
         public TelaInicial(Usuario usuario)
         {
@@ -36,14 +38,6 @@ namespace SistemaLoginBD.Apresentação
             telaLogin.Show();
         }
 
-        private void btnControleFuncionarios_Click(object sender, EventArgs e)
-        {
-            ListagemFuncionario listagemFuncionario = new ListagemFuncionario(repositorioFuncionario);
-            pListagem.Controls.Clear();
-            listagemFuncionario.Dock = DockStyle.Fill;
-            pListagem.Controls.Add(listagemFuncionario);
-            listagemAtual = listagemFuncionario;
-        }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -72,6 +66,30 @@ namespace SistemaLoginBD.Apresentação
                         return;
 
                     repositorioProduto.Inserir(telaCadastroProduto.produto);
+                    listagemAtual.AtualizarGrid();
+                    break;
+
+                case "ListagemVenda":
+                    CadastroVenda telaCadastroVenda = new CadastroVenda(repositorioFuncionario, repositorioProduto);
+
+                    DialogResult resultadoVenda = telaCadastroVenda.ShowDialog();
+
+                    if (resultadoVenda != DialogResult.OK)
+                        return;
+
+                    foreach (var produto in telaCadastroVenda.venda.Produtos)
+                    {
+                        int id = repositorioProduto.DescobrirIdPeloNome(produto.Nome);
+                        produto.Id = id;
+                    }
+
+                    repositorioVenda.Inserir(telaCadastroVenda.venda);
+
+                    foreach(var produto in telaCadastroVenda.venda.Produtos) 
+                    { 
+                        repositorioProduto.DiminuiQuantidadeProduto(produto.Id, produto.Quantidade);
+                    }
+
                     listagemAtual.AtualizarGrid();
                     break;
             }
@@ -168,7 +186,30 @@ namespace SistemaLoginBD.Apresentação
 
                     listagemAtual.AtualizarGrid();
                     break;
+
+                case "ListagemVenda":
+
+                    int idVenda = listagemAtual.SelecionarEntidadePorIdGrid();
+
+                    if (idVenda == -1)
+                    {
+                        MessageBox.Show("Selecione uma venda.");
+                        return;
+                    }
+
+                    repositorioVenda.Excluir(idVenda);
+
+                    listagemAtual.AtualizarGrid();
+                    break;
             }
+        }
+        private void btnControleFuncionarios_Click(object sender, EventArgs e)
+        {
+            ListagemFuncionario listagemFuncionario = new ListagemFuncionario(repositorioFuncionario);
+            pListagem.Controls.Clear();
+            listagemFuncionario.Dock = DockStyle.Fill;
+            pListagem.Controls.Add(listagemFuncionario);
+            listagemAtual = listagemFuncionario;
         }
 
         private void btnControleProdutos_Click(object sender, EventArgs e)
@@ -178,6 +219,15 @@ namespace SistemaLoginBD.Apresentação
             listagemProduto.Dock = DockStyle.Fill;
             pListagem.Controls.Add(listagemProduto);
             listagemAtual = listagemProduto;
+        }
+
+        private void btnControleVendas_Click(object sender, EventArgs e)
+        {
+            ListagemVenda listagemVenda = new ListagemVenda(repositorioVenda);
+            pListagem.Controls.Clear();
+            listagemVenda.Dock = DockStyle.Fill;
+            pListagem.Controls.Add(listagemVenda);
+            listagemAtual = listagemVenda;
         }
     }
 }

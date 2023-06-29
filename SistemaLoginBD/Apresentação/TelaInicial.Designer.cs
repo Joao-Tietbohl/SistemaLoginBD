@@ -41,6 +41,7 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnInserir = new System.Windows.Forms.Button();
+            this.btnControleVendas = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnControleVendas);
             this.panel3.Controls.Add(this.btnControleProdutos);
             this.panel3.Location = new System.Drawing.Point(3, 145);
             this.panel3.Name = "panel3";
@@ -176,6 +178,17 @@
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
+            // btnControleVendas
+            // 
+            this.btnControleVendas.BackColor = System.Drawing.SystemColors.Control;
+            this.btnControleVendas.Location = new System.Drawing.Point(0, 77);
+            this.btnControleVendas.Name = "btnControleVendas";
+            this.btnControleVendas.Size = new System.Drawing.Size(200, 42);
+            this.btnControleVendas.TabIndex = 7;
+            this.btnControleVendas.Text = "Controle Vendas";
+            this.btnControleVendas.UseVisualStyleBackColor = false;
+            this.btnControleVendas.Click += new System.EventHandler(this.btnControleVendas_Click);
+            // 
             // TelaInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -211,5 +224,6 @@
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.Button btnControleProdutos;
+        private System.Windows.Forms.Button btnControleVendas;
     }
 }

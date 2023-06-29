@@ -27,8 +27,6 @@ namespace SistemaLoginBD.Apresentação
             if (quantidadeLinhas > 0)
                 gridFuncionarios.Rows[0].Selected = true;
 
-            if (gridFuncionarios.Rows[quantidadeLinhas - 1].Cells[0].Value == null)
-                gridFuncionarios.Rows.RemoveAt(quantidadeLinhas - 1);
 
         }
 
