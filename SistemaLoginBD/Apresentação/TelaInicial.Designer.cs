@@ -35,13 +35,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnControleFuncionarios = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnControleVendas = new System.Windows.Forms.Button();
             this.btnControleProdutos = new System.Windows.Forms.Button();
             this.pListagem = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnInserir = new System.Windows.Forms.Button();
-            this.btnControleVendas = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -51,16 +51,17 @@
             // lbBemVindo
             // 
             this.lbBemVindo.AutoSize = true;
+            this.lbBemVindo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBemVindo.Location = new System.Drawing.Point(4, 496);
             this.lbBemVindo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbBemVindo.Name = "lbBemVindo";
-            this.lbBemVindo.Size = new System.Drawing.Size(91, 16);
+            this.lbBemVindo.Size = new System.Drawing.Size(81, 14);
             this.lbBemVindo.TabIndex = 0;
             this.lbBemVindo.Text = "NomeUsuario";
             // 
             // btnSair
             // 
-            this.btnSair.Location = new System.Drawing.Point(4, 516);
+            this.btnSair.Location = new System.Drawing.Point(3, 414);
             this.btnSair.Margin = new System.Windows.Forms.Padding(4);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(118, 28);
@@ -117,6 +118,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 348);
             this.panel3.TabIndex = 5;
+            // 
+            // btnControleVendas
+            // 
+            this.btnControleVendas.BackColor = System.Drawing.SystemColors.Control;
+            this.btnControleVendas.Location = new System.Drawing.Point(0, 77);
+            this.btnControleVendas.Name = "btnControleVendas";
+            this.btnControleVendas.Size = new System.Drawing.Size(200, 42);
+            this.btnControleVendas.TabIndex = 7;
+            this.btnControleVendas.Text = "Controle Vendas";
+            this.btnControleVendas.UseVisualStyleBackColor = false;
+            this.btnControleVendas.Click += new System.EventHandler(this.btnControleVendas_Click);
             // 
             // btnControleProdutos
             // 
@@ -177,17 +189,6 @@
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
-            // 
-            // btnControleVendas
-            // 
-            this.btnControleVendas.BackColor = System.Drawing.SystemColors.Control;
-            this.btnControleVendas.Location = new System.Drawing.Point(0, 77);
-            this.btnControleVendas.Name = "btnControleVendas";
-            this.btnControleVendas.Size = new System.Drawing.Size(200, 42);
-            this.btnControleVendas.TabIndex = 7;
-            this.btnControleVendas.Text = "Controle Vendas";
-            this.btnControleVendas.UseVisualStyleBackColor = false;
-            this.btnControleVendas.Click += new System.EventHandler(this.btnControleVendas_Click);
             // 
             // TelaInicial
             // 

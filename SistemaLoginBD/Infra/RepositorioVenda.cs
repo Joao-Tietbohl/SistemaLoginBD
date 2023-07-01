@@ -127,8 +127,8 @@ namespace SistemaLoginBD.Infra
         internal void Excluir(int id)
         {
             string sqlExcluir =
-             @"Delete from Venda where Id = @Id
-               Delete from VendaProduto where VendaID = @Id";
+             @"Delete from VendaProduto where VendaID = @Id
+               Delete from Venda where Id = @Id";
 
             SqlConnection conexaoComBanco = new SqlConnection(connectionString);
 

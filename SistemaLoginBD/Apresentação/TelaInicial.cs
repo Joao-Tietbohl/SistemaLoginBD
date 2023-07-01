@@ -3,13 +3,6 @@ using SistemaLoginBD.Apresentação.Produtos;
 using SistemaLoginBD.Apresentação.Vendas;
 using SistemaLoginBD.Infra;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaLoginBD.Apresentação
@@ -41,167 +34,190 @@ namespace SistemaLoginBD.Apresentação
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            var listagem = pListagem.Controls[0];
-
-            switch (listagem.Name)
+            try
             {
-                case "ListagemFuncionario":
-                    CadastroFuncionario telaCadastroFuncionario = new CadastroFuncionario();
 
-                    DialogResult resultadoFuncionario = telaCadastroFuncionario.ShowDialog();
+                var listagem = pListagem.Controls[0];
 
-                    if (resultadoFuncionario != DialogResult.OK)
-                        return;
+                switch (listagem.Name)
+                {
+                    case "ListagemFuncionario":
+                        CadastroFuncionario telaCadastroFuncionario = new CadastroFuncionario();
 
-                    repositorioFuncionario.Inserir(telaCadastroFuncionario.funcionario);
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        DialogResult resultadoFuncionario = telaCadastroFuncionario.ShowDialog();
 
-                case "ListagemProduto":
-                    CadastroProduto telaCadastroProduto = new CadastroProduto();
+                        if (resultadoFuncionario != DialogResult.OK)
+                            return;
 
-                    DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
+                        repositorioFuncionario.Inserir(telaCadastroFuncionario.funcionario);
+                        listagemAtual.AtualizarGrid();
+                        break;
 
-                    if (resultadoProduto != DialogResult.OK)
-                        return;
+                    case "ListagemProduto":
+                        CadastroProduto telaCadastroProduto = new CadastroProduto();
 
-                    repositorioProduto.Inserir(telaCadastroProduto.produto);
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
 
-                case "ListagemVenda":
-                    CadastroVenda telaCadastroVenda = new CadastroVenda(repositorioFuncionario, repositorioProduto);
+                        if (resultadoProduto != DialogResult.OK)
+                            return;
 
-                    DialogResult resultadoVenda = telaCadastroVenda.ShowDialog();
+                        repositorioProduto.Inserir(telaCadastroProduto.produto);
+                        listagemAtual.AtualizarGrid();
+                        break;
 
-                    if (resultadoVenda != DialogResult.OK)
-                        return;
+                    case "ListagemVenda":
+                        CadastroVenda telaCadastroVenda = new CadastroVenda(repositorioFuncionario, repositorioProduto);
 
-                    foreach (var produto in telaCadastroVenda.venda.Produtos)
-                    {
-                        int id = repositorioProduto.DescobrirIdPeloNome(produto.Nome);
-                        produto.Id = id;
-                    }
+                        DialogResult resultadoVenda = telaCadastroVenda.ShowDialog();
 
-                    repositorioVenda.Inserir(telaCadastroVenda.venda);
+                        if (resultadoVenda != DialogResult.OK)
+                            return;
 
-                    foreach(var produto in telaCadastroVenda.venda.Produtos) 
-                    { 
-                        repositorioProduto.DiminuiQuantidadeProduto(produto.Id, produto.Quantidade);
-                    }
+                        foreach (var produto in telaCadastroVenda.venda.Produtos)
+                        {
+                            int id = repositorioProduto.DescobrirIdPeloNome(produto.Nome);
+                            produto.Id = id;
+                        }
 
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        repositorioVenda.Inserir(telaCadastroVenda.venda);
+
+                        foreach (var produto in telaCadastroVenda.venda.Produtos)
+                        {
+                            repositorioProduto.DiminuiQuantidadeProduto(produto.Id, produto.Quantidade);
+                        }
+
+                        listagemAtual.AtualizarGrid();
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Exceção: {ex.Message}");
+            }
+           
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var listagem = pListagem.Controls[0];
-
-            switch (listagem.Name)
+            try
             {
-                case "ListagemFuncionario":
+                var listagem = pListagem.Controls[0];
 
-                    int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
+                switch (listagem.Name)
+                {
+                    case "ListagemFuncionario":
 
-                    if (idFuncionario == -1)
-                    {
-                        MessageBox.Show("Selecione um funcionário.");
-                        return;
-                    }
+                        int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    var funcionario = repositorioFuncionario.SelecionarPorId(idFuncionario);
+                        if (idFuncionario == -1)
+                        {
+                            MessageBox.Show("Selecione um funcionário.");
+                            return;
+                        }
 
-                    CadastroFuncionario telaCadastro = new CadastroFuncionario(funcionario);
+                        var funcionario = repositorioFuncionario.SelecionarPorId(idFuncionario);
 
-                    DialogResult resultado = telaCadastro.ShowDialog();
+                        CadastroFuncionario telaCadastro = new CadastroFuncionario(funcionario);
 
-                    if (resultado != DialogResult.OK)
-                        return;
+                        DialogResult resultado = telaCadastro.ShowDialog();
 
-                    telaCadastro.funcionario.Id = funcionario.Id;
-                    repositorioFuncionario.Editar(telaCadastro.funcionario);
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        if (resultado != DialogResult.OK)
+                            return;
 
-                case "ListagemProduto":
+                        telaCadastro.funcionario.Id = funcionario.Id;
+                        repositorioFuncionario.Editar(telaCadastro.funcionario);
+                        listagemAtual.AtualizarGrid();
+                        break;
 
-                    int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
+                    case "ListagemProduto":
 
-                    if (idProduto == -1)
-                    {
-                        MessageBox.Show("Selecione um produto.");
-                        return;
-                    }
+                        int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    var produto = repositorioProduto.SelecionarPorId(idProduto);
+                        if (idProduto == -1)
+                        {
+                            MessageBox.Show("Selecione um produto.");
+                            return;
+                        }
 
-                    CadastroProduto telaCadastroProduto = new CadastroProduto(produto);
+                        var produto = repositorioProduto.SelecionarPorId(idProduto);
 
-                    DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
+                        CadastroProduto telaCadastroProduto = new CadastroProduto(produto);
 
-                    if (resultadoProduto != DialogResult.OK)
-                        return;
+                        DialogResult resultadoProduto = telaCadastroProduto.ShowDialog();
 
-                    telaCadastroProduto.produto.Id = produto.Id;
-                    repositorioProduto.Editar(telaCadastroProduto.produto);
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        if (resultadoProduto != DialogResult.OK)
+                            return;
+
+                        telaCadastroProduto.produto.Id = produto.Id;
+                        repositorioProduto.Editar(telaCadastroProduto.produto);
+                        listagemAtual.AtualizarGrid();
+                        break;
+                }
+            } catch(Exception ex)
+            {
+                MessageBox.Show($"Exception: {ex.Message}");
             }
+           
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            var listagem = pListagem.Controls[0];
-
-            switch (listagem.Name)
+            try
             {
-                case "ListagemFuncionario":
+                var listagem = pListagem.Controls[0];
 
-                    int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
+                switch (listagem.Name)
+                {
+                    case "ListagemFuncionario":
 
-                    if (idFuncionario == -1)
-                    {
-                        MessageBox.Show("Selecione um funcionário.");
-                        return;
-                    }
+                        int idFuncionario = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    repositorioFuncionario.Excluir(idFuncionario);
+                        if (idFuncionario == -1)
+                        {
+                            MessageBox.Show("Selecione um funcionário.");
+                            return;
+                        }
 
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        repositorioFuncionario.Excluir(idFuncionario);
 
-                case "ListagemProduto":
+                        listagemAtual.AtualizarGrid();
+                        break;
 
-                    int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
+                    case "ListagemProduto":
 
-                    if (idProduto == -1)
-                    {
-                        MessageBox.Show("Selecione um produto.");
-                        return;
-                    }
+                        int idProduto = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    repositorioProduto.Excluir(idProduto);
+                        if (idProduto == -1)
+                        {
+                            MessageBox.Show("Selecione um produto.");
+                            return;
+                        }
 
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        repositorioProduto.Excluir(idProduto);
 
-                case "ListagemVenda":
+                        listagemAtual.AtualizarGrid();
+                        break;
 
-                    int idVenda = listagemAtual.SelecionarEntidadePorIdGrid();
+                    case "ListagemVenda":
 
-                    if (idVenda == -1)
-                    {
-                        MessageBox.Show("Selecione uma venda.");
-                        return;
-                    }
+                        int idVenda = listagemAtual.SelecionarEntidadePorIdGrid();
 
-                    repositorioVenda.Excluir(idVenda);
+                        if (idVenda == -1)
+                        {
+                            MessageBox.Show("Selecione uma venda.");
+                            return;
+                        }
 
-                    listagemAtual.AtualizarGrid();
-                    break;
+                        repositorioVenda.Excluir(idVenda);
+
+                        listagemAtual.AtualizarGrid();
+                        break;
+                }
+            } catch(Exception ex)
+            {
+                MessageBox.Show($"Exception: {ex.Message}");
             }
+           
         }
         private void btnControleFuncionarios_Click(object sender, EventArgs e)
         {

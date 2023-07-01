@@ -33,7 +33,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.gridProdutosDisponiveis = new System.Windows.Forms.DataGridView();
+            this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridProdutosSelecionados = new System.Windows.Forms.DataGridView();
+            this.Produto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantidade1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.tbValorTotal = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,12 +48,6 @@
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Produto1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosDisponiveis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridProdutosSelecionados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nQuantidade)).BeginInit();
@@ -56,6 +56,7 @@
             // cbFuncionario
             // 
             this.cbFuncionario.DisplayMember = "Nome";
+            this.cbFuncionario.Enabled = false;
             this.cbFuncionario.FormattingEnabled = true;
             this.cbFuncionario.Location = new System.Drawing.Point(45, 59);
             this.cbFuncionario.Name = "cbFuncionario";
@@ -105,6 +106,30 @@
             this.gridProdutosDisponiveis.TabIndex = 4;
             this.gridProdutosDisponiveis.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutosDisponiveis_CellClick);
             // 
+            // Produto
+            // 
+            this.Produto.HeaderText = "Produto";
+            this.Produto.MinimumWidth = 6;
+            this.Produto.Name = "Produto";
+            this.Produto.ReadOnly = true;
+            this.Produto.Width = 250;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor";
+            this.Valor.MinimumWidth = 6;
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 80;
+            // 
+            // Quantidade
+            // 
+            this.Quantidade.HeaderText = "Qtd";
+            this.Quantidade.MinimumWidth = 6;
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.ReadOnly = true;
+            this.Quantidade.Width = 70;
+            // 
             // gridProdutosSelecionados
             // 
             this.gridProdutosSelecionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -120,6 +145,30 @@
             this.gridProdutosSelecionados.Size = new System.Drawing.Size(673, 175);
             this.gridProdutosSelecionados.TabIndex = 6;
             this.gridProdutosSelecionados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProdutosSelecionados_CellClick);
+            // 
+            // Produto1
+            // 
+            this.Produto1.HeaderText = "Produto";
+            this.Produto1.MinimumWidth = 6;
+            this.Produto1.Name = "Produto1";
+            this.Produto1.ReadOnly = true;
+            this.Produto1.Width = 250;
+            // 
+            // Valor1
+            // 
+            this.Valor1.HeaderText = "Valor";
+            this.Valor1.MinimumWidth = 6;
+            this.Valor1.Name = "Valor1";
+            this.Valor1.ReadOnly = true;
+            this.Valor1.Width = 80;
+            // 
+            // Quantidade1
+            // 
+            this.Quantidade1.HeaderText = "Qtd";
+            this.Quantidade1.MinimumWidth = 6;
+            this.Quantidade1.Name = "Quantidade1";
+            this.Quantidade1.ReadOnly = true;
+            this.Quantidade1.Width = 70;
             // 
             // label4
             // 
@@ -194,54 +243,6 @@
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // Produto
-            // 
-            this.Produto.HeaderText = "Produto";
-            this.Produto.MinimumWidth = 6;
-            this.Produto.Name = "Produto";
-            this.Produto.ReadOnly = true;
-            this.Produto.Width = 250;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.MinimumWidth = 6;
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            this.Valor.Width = 80;
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Qtd";
-            this.Quantidade.MinimumWidth = 6;
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.ReadOnly = true;
-            this.Quantidade.Width = 70;
-            // 
-            // Produto1
-            // 
-            this.Produto1.HeaderText = "Produto";
-            this.Produto1.MinimumWidth = 6;
-            this.Produto1.Name = "Produto1";
-            this.Produto1.ReadOnly = true;
-            this.Produto1.Width = 250;
-            // 
-            // Valor1
-            // 
-            this.Valor1.HeaderText = "Valor";
-            this.Valor1.MinimumWidth = 6;
-            this.Valor1.Name = "Valor1";
-            this.Valor1.ReadOnly = true;
-            this.Valor1.Width = 80;
-            // 
-            // Quantidade1
-            // 
-            this.Quantidade1.HeaderText = "Qtd";
-            this.Quantidade1.MinimumWidth = 6;
-            this.Quantidade1.Name = "Quantidade1";
-            this.Quantidade1.ReadOnly = true;
-            this.Quantidade1.Width = 70;
             // 
             // CadastroVenda
             // 
